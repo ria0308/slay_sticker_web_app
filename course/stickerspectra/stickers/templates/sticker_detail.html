@@ -1,0 +1,46 @@
+<!-- stickers/templates/stickers/sticker_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg">
+    <h1 class="text-4xl font-bold mb-6">{{ sticker.creator.username }}'s Sticker</h1>
+
+    <!-- Display Sticker Image -->
+    <div class="text-center">
+      <img src="{{ sticker.image.url }}" alt="Sticker Image" class="max-w-full mx-auto mb-6 rounded-lg shadow-md" style="width: 400px;">
+    </div>
+
+    <!-- Display Sticker Details -->
+    <div class="mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="mb-4 md:mb-0">
+          <p class="text-lg"><strong>Printing House:</strong> {{ sticker.printing_house.name }}</p>
+        </div>
+        <div class="mb-4 md:mb-0">
+          <p class="text-lg"><strong>Type:</strong> {{ sticker.type.name }}</p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-lg"><strong>Tags:</strong></p>
+        <div class="flex flex-wrap">
+          {% for tag in sticker.tags.all %}
+            <span class="bg-blue-500 text-white px-3 py-1 rounded-full mr-2 mb-2">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-lg"><strong>Sizes:</strong></p>
+        <div class="flex flex-wrap">
+          {% for size in sticker.sizes.all %}
+            <span class="bg-green-500 text-white px-3 py-1 rounded-full mr-2 mb-2">{{ size.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- You can add more details as needed -->
+
+  </div>
+{% endblock %}
